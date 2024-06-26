@@ -6,7 +6,7 @@ namespace EcoClean.Data.Repository
     {
         IEnumerable<NotificacaoModel> GetAll();
 
-        NotificacaoModel GetById(long id);
+        NotificacaoModel GetById(long Id);
         NotificacaoModel FindByDate(DateTime date);
         NotificacaoModel FindByEmail(string email);
         void Add(NotificacaoModel notificacao);

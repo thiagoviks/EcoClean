@@ -6,7 +6,7 @@ namespace EcoClean.Data.Repository
     {
         IEnumerable<MoradorModel> GetAll();
 
-        MoradorModel GetById(long id);
+        MoradorModel GetById(long Id);
         MoradorModel FindByNome(string nome);
         MoradorModel FindByEmail(string email);
         void Add(MoradorModel morador);

@@ -6,7 +6,7 @@ namespace EcoClean.Data.Repository
     {
         IEnumerable<ColetaModel> GetAll();
 
-        ColetaModel GetById(long id);
+        ColetaModel GetById(long Id);
         void Add(ColetaModel coleta);
         void Update(ColetaModel coleta);
         void Delete(ColetaModel coleta);

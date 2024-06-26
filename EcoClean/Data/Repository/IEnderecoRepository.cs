@@ -6,9 +6,9 @@ namespace EcoClean.Data.Repository
     {
         IEnumerable<EnderecoModel> GetAll();
 
-        EnderecoModel GetById(long id);
-        EnderecoModel FindByNome(string nome);
-        EnderecoModel FindByEmail(string email);
+        EnderecoModel GetById(long Id);
+        EnderecoModel FindByCep(string Cep);
+       
         void Add(EnderecoModel endereco);
         void Update(EnderecoModel endereco);
         void Delete(EnderecoModel endereco);
