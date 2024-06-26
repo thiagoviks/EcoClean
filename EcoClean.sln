@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.10.35013.160
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EcoClean", "EcoClean\EcoClean.csproj", "{BC1BEA2F-3F14-4E7A-B7E8-F199817B16FF}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{BC1BEA2F-3F14-4E7A-B7E8-F199817B16FF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BC1BEA2F-3F14-4E7A-B7E8-F199817B16FF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BC1BEA2F-3F14-4E7A-B7E8-F199817B16FF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BC1BEA2F-3F14-4E7A-B7E8-F199817B16FF}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {B0719929-A3A1-42BF-9010-7067B3C877EA}
+	EndGlobalSection
+EndGlobal
