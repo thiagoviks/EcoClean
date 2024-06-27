@@ -16,10 +16,8 @@ namespace EcoClean.Data.Repository
 
         public IEnumerable<MoradorModel> GetAll() => _context.Morador.ToList();
 
-        public MoradorModel GetById(long Id)
-        {
-            return _context.Morador.Find(Id);
-        }
+        public MoradorModel GetById(long Id) => _context.Morador.Find(Id);
+
         public MoradorModel FindByEmail(string email)
         {
             return _context.Morador
