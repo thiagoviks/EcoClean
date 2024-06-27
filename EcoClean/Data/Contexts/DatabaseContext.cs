@@ -5,15 +5,15 @@ namespace EcoClean.Data.Contexts
 {
     public class DatabaseContext : DbContext
     {
-        public DbSet<CaminhaoModel> Caminhao { get; set; }
-        public DbSet<ColetaModel> Coleta { get; set; }
-        public DbSet<EnderecoModel> Endereco { get; set; }
-        public DbSet<MoradorModel> Morador { get; set; }
-        public DbSet<NotificacaoModel> Notificacao { get; set; }
-        public DbSet<RotaModel> Rota { get; set; }
-        public DbSet<TipoResiduoModel> TipoResiduo { get; set; }
-        public DbSet<ColetaTipoResiduoModel> ColetaTipoResiduo { get; set; }
-        public DbSet<RotaEnderecoModel> RotaEndereco { get; set; }
+        public virtual DbSet<CaminhaoModel> Caminhao { get; set; }
+        public virtual DbSet<ColetaModel> Coleta { get; set; }
+        public virtual DbSet<EnderecoModel> Endereco { get; set; }
+        public virtual DbSet<MoradorModel> Morador { get; set; }
+        public virtual DbSet<NotificacaoModel> Notificacao { get; set; }
+        public virtual DbSet<RotaModel> Rota { get; set; }
+        public virtual DbSet<TipoResiduoModel> TipoResiduo { get; set; }
+        public virtual DbSet<ColetaTipoResiduoModel> ColetaTipoResiduo { get; set; }
+        public virtual DbSet<RotaEnderecoModel> RotaEndereco { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
