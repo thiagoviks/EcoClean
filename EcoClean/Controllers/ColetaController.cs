@@ -40,7 +40,7 @@ namespace EcoClean.Controllers
         }
 
         [HttpGet("{id}")]
-        public ActionResult<ColetaViewModel> Get(int id)
+        public ActionResult<ColetaViewModel> Get(long id)
         {
             var coleta = _coletaService.ObterColetaPorId(id);
             if (coleta == null)
@@ -59,7 +59,7 @@ namespace EcoClean.Controllers
         }
 
         [HttpPut("{id}")]
-        public ActionResult Put(int id, [FromBody] ColetaViewModel viewModel)
+        public ActionResult Put(long id, [FromBody] ColetaViewModel viewModel)
         {
             var coletaExistente = _coletaService.ObterColetaPorId(id);
             if (coletaExistente == null)
@@ -71,7 +71,7 @@ namespace EcoClean.Controllers
         }
 
         [HttpDelete("{id}")]
-        public ActionResult Delete(int id)
+        public ActionResult Delete(long id)
         {
             _coletaService.DeletarColeta(id);
             return NoContent();

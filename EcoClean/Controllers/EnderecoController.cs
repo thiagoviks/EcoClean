@@ -38,7 +38,7 @@ namespace EcoClean.Controllers
         }
 
         [HttpGet("{id}")]
-        public ActionResult<EnderecoViewModel> Get(int id)
+        public ActionResult<EnderecoViewModel> Get(long id)
         {
             var endereco = _enderecoService.ObterEnderecoPorId(id);
             if (endereco == null)
@@ -57,7 +57,7 @@ namespace EcoClean.Controllers
         }
 
         [HttpPut("{id}")]
-        public ActionResult Put(int id, [FromBody] EnderecoViewModel viewModel)
+        public ActionResult Put(long id, [FromBody] EnderecoViewModel viewModel)
         {
             var enderecoExistente = _enderecoService.ObterEnderecoPorId(id);
             if (enderecoExistente == null)

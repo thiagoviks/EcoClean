@@ -38,7 +38,7 @@ namespace EcoClean.Controllers
         }
 
         [HttpGet("{id}")]
-        public ActionResult<RotaViewModel> Get(int id)
+        public ActionResult<RotaViewModel> Get(long id)
         {
             var rota = _rotaService.ObterRotaPorId(id);
             if (rota == null)
@@ -57,7 +57,7 @@ namespace EcoClean.Controllers
         }
 
         [HttpPut("{id}")]
-        public ActionResult Put(int id, [FromBody] RotaViewModel viewModel)
+        public ActionResult Put(long id, [FromBody] RotaViewModel viewModel)
         {
             var rotaExistente = _rotaService.ObterRotaPorId(id);
             if (rotaExistente == null)

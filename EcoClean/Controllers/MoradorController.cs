@@ -37,7 +37,7 @@ namespace EcoClean.Controllers
         }
 
         [HttpGet("{id}")]
-        public ActionResult<MoradorViewModel> Get(int id)
+        public ActionResult<MoradorViewModel> Get(long id)
         {
             var morador = _moradorService.ObterMoradorPorId(id);
             if (morador == null)
@@ -56,7 +56,7 @@ namespace EcoClean.Controllers
         }
 
         [HttpPut("{id}")]
-        public ActionResult Put(int id, [FromBody] MoradorViewModel viewModel)
+        public ActionResult Put(long id, [FromBody] MoradorViewModel viewModel)
         {
             var moradorExistente = _moradorService.ObterMoradorPorId(id);
             if (moradorExistente == null)

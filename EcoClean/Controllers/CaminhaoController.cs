@@ -38,7 +38,7 @@ namespace EcoClean.Controllers
         }
 
         [HttpGet("{id}")]
-        public ActionResult<CaminhaoViewModel> Get(int id)
+        public ActionResult<CaminhaoViewModel> Get(long id)
         {
             var caminhao = _caminhaoService.ObterCaminhaoPorId(id);
             if (caminhao == null)
@@ -57,7 +57,7 @@ namespace EcoClean.Controllers
         }
 
         [HttpPut("{id}")]
-        public ActionResult Put(int id, [FromBody] CaminhaoViewModel viewModel)
+        public ActionResult Put(long id, [FromBody] CaminhaoViewModel viewModel)
         {
             var caminhaoExistente = _caminhaoService.ObterCaminhaoPorId(id);
             if (caminhaoExistente == null)
@@ -69,7 +69,7 @@ namespace EcoClean.Controllers
         }
 
         [HttpDelete("{id}")]
-        public ActionResult Delete(int id)
+        public ActionResult Delete(long id)
         {
             _caminhaoService.DeletarCaminhao(id);
             return NoContent();

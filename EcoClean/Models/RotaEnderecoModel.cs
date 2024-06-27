@@ -2,10 +2,10 @@
 {
     public class RotaEnderecoModel
     {
-        public int EnderecoId { get; set; }
+        public long EnderecoId { get; set; }
         public EnderecoModel Endereco { get; set; }
 
-        public int RotaId { get; set; }
+        public long RotaId { get; set; }
         public RotaModel Rota { get; set; }
     }
 }

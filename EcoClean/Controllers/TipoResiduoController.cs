@@ -38,7 +38,7 @@ namespace EcoClean.Controllers
         }
 
         [HttpGet("{id}")]
-        public ActionResult<TipoResiduoViewModel> Get(int id)
+        public ActionResult<TipoResiduoViewModel> Get(long id)
         {
             var tipoResiduo = _tipoResiduoService.ObterTipoResiduoPorId(id);
             if (tipoResiduo == null)
@@ -57,7 +57,7 @@ namespace EcoClean.Controllers
         }
 
         [HttpPut("{id}")]
-        public ActionResult Put(int id, [FromBody] RotaViewModel viewModel)
+        public ActionResult Put(long id, [FromBody] RotaViewModel viewModel)
         {
             var tipoResiduoExistente = _tipoResiduoService.ObterTipoResiduoPorId(id);
             if (tipoResiduoExistente == null)

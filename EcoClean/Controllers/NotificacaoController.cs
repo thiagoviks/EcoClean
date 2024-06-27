@@ -37,7 +37,7 @@ namespace EcoClean.Controllers
         }
 
         [HttpGet("{id}")]
-        public ActionResult<NotificacaoViewModel> Get(int id)
+        public ActionResult<NotificacaoViewModel> Get(long id)
         {
             var notificacao = _notificacaoService.ObterNotificacaoPorId(id);
             if (notificacao == null)
@@ -56,7 +56,7 @@ namespace EcoClean.Controllers
         }
 
         [HttpPut("{id}")]
-        public ActionResult Put(int id, [FromBody] MoradorViewModel viewModel)
+        public ActionResult Put(long id, [FromBody] MoradorViewModel viewModel)
         {
             var notificacaoExistente = _notificacaoService.ObterNotificacaoPorId(id);
             if (notificacaoExistente == null)
