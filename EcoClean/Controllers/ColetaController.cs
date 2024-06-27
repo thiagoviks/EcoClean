@@ -5,11 +5,13 @@ using System.Diagnostics;
 using AutoMapper;
 using EcoClean.Services;
 using EcoClean.ViewModel;
+using Microsoft.AspNetCore.Authorization;
 
 namespace EcoClean.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class ColetaController : ControllerBase
     {
         private readonly ILogger<ColetaController> _logger;
@@ -32,6 +34,7 @@ namespace EcoClean.Controllers
         }
 
         [HttpGet]
+        [Authorize(Roles = "operador,analista,gerente")]
         public ActionResult<IEnumerable<ColetaViewModel>> Get()
         {
             var coletas = _coletaService.ListarColetas();
@@ -40,6 +43,7 @@ namespace EcoClean.Controllers
         }
 
         [HttpGet("{id}")]
+        [Authorize(Roles = "operador,analista,gerente")]
         public ActionResult<ColetaViewModel> Get(long id)
         {
             var coleta = _coletaService.ObterColetaPorId(id);
@@ -51,6 +55,7 @@ namespace EcoClean.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "gerente,analista")]
         public ActionResult Post([FromBody] ColetaViewModel viewModel)
         {
             var coleta = _mapper.Map<ColetaModel>(viewModel);
@@ -59,6 +64,7 @@ namespace EcoClean.Controllers
         }
 
         [HttpPut("{id}")]
+        [Authorize(Roles = "gerente")]
         public ActionResult Put(long id, [FromBody] ColetaViewModel viewModel)
         {
             var coletaExistente = _coletaService.ObterColetaPorId(id);
@@ -71,6 +77,7 @@ namespace EcoClean.Controllers
         }
 
         [HttpDelete("{id}")]
+        [Authorize(Roles = "gerente")]
         public ActionResult Delete(long id)
         {
             _coletaService.DeletarColeta(id);

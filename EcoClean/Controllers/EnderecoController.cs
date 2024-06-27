@@ -5,11 +5,13 @@ using System.Diagnostics;
 using AutoMapper;
 using EcoClean.Services;
 using EcoClean.ViewModel;
+using Microsoft.AspNetCore.Authorization;
 
 namespace EcoClean.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class EnderecoController : ControllerBase
     {
         private readonly ILogger<EnderecoController> _logger;
@@ -30,6 +32,7 @@ namespace EcoClean.Controllers
         }
 
         [HttpGet]
+        [Authorize(Roles = "operador,analista,gerente")]
         public ActionResult<IEnumerable<EnderecoViewModel>> Get()
         {
             var enderecos = _enderecoService.ListarEnderecos();
@@ -38,6 +41,7 @@ namespace EcoClean.Controllers
         }
 
         [HttpGet("{id}")]
+        [Authorize(Roles = "operador,analista,gerente")]
         public ActionResult<EnderecoViewModel> Get(long id)
         {
             var endereco = _enderecoService.ObterEnderecoPorId(id);
@@ -49,6 +53,7 @@ namespace EcoClean.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "gerente,analista")]
         public ActionResult Post([FromBody] EnderecoViewModel viewModel)
         {
             var endereco = _mapper.Map<EnderecoModel>(viewModel);
@@ -57,6 +62,7 @@ namespace EcoClean.Controllers
         }
 
         [HttpPut("{id}")]
+        [Authorize(Roles = "gerente")]
         public ActionResult Put(long id, [FromBody] EnderecoViewModel viewModel)
         {
             var enderecoExistente = _enderecoService.ObterEnderecoPorId(id);
@@ -69,6 +75,7 @@ namespace EcoClean.Controllers
         }
 
         [HttpDelete("{id}")]
+        [Authorize(Roles = "gerente")]
         public ActionResult Delete(long id)
         {
             _enderecoService.DeletarEndereco(id);

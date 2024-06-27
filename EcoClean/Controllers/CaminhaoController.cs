@@ -3,12 +3,14 @@ using EcoClean.Data.Contexts;
 using EcoClean.Models;
 using EcoClean.Services;
 using EcoClean.ViewModel;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace EcoClean.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
+    [Authorize]
     public class CaminhaoController : ControllerBase
     {
         private readonly ILogger<CaminhaoController> _logger;
@@ -30,6 +32,7 @@ namespace EcoClean.Controllers
         }
 
         [HttpGet]
+        [Authorize(Roles = "operador,analista,gerente")]
         public ActionResult<IEnumerable<CaminhaoViewModel>> Get()
         {
             var caminhoes = _caminhaoService.ListarCaminhoes();
@@ -38,6 +41,7 @@ namespace EcoClean.Controllers
         }
 
         [HttpGet("{id}")]
+        [Authorize(Roles = "operador,analista,gerente")]
         public ActionResult<CaminhaoViewModel> Get(long id)
         {
             var caminhao = _caminhaoService.ObterCaminhaoPorId(id);
@@ -49,6 +53,7 @@ namespace EcoClean.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "gerente,analista")]
         public ActionResult Post([FromBody] CaminhaoViewModel viewModel)
         {
             var caminhao = _mapper.Map<CaminhaoModel>(viewModel);
@@ -57,6 +62,7 @@ namespace EcoClean.Controllers
         }
 
         [HttpPut("{id}")]
+        [Authorize(Roles = "gerente")]
         public ActionResult Put(long id, [FromBody] CaminhaoViewModel viewModel)
         {
             var caminhaoExistente = _caminhaoService.ObterCaminhaoPorId(id);
@@ -69,6 +75,7 @@ namespace EcoClean.Controllers
         }
 
         [HttpDelete("{id}")]
+        [Authorize(Roles = "gerente")]
         public ActionResult Delete(long id)
         {
             _caminhaoService.DeletarCaminhao(id);

@@ -3,12 +3,14 @@ using EcoClean.Data.Contexts;
 using EcoClean.Models;
 using EcoClean.Services;
 using EcoClean.ViewModel;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace EcoClean.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
+    [Authorize]
     public class NotificacaoController : ControllerBase
     {
         private readonly ILogger<NotificacaoController> _logger;
@@ -29,6 +31,7 @@ namespace EcoClean.Controllers
         }
 
         [HttpGet]
+        [Authorize(Roles = "operador,analista,gerente")]
         public ActionResult<IEnumerable<NotificacaoViewModel>> Get()
         {
             var notificacoes = _notificacaoService.ListarNotificacoes();
@@ -37,6 +40,7 @@ namespace EcoClean.Controllers
         }
 
         [HttpGet("{id}")]
+        [Authorize(Roles = "operador,analista,gerente")]
         public ActionResult<NotificacaoViewModel> Get(long id)
         {
             var notificacao = _notificacaoService.ObterNotificacaoPorId(id);
@@ -48,6 +52,7 @@ namespace EcoClean.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "gerente,analista")]
         public ActionResult Post([FromBody] NotificacaoViewModel viewModel)
         {
             var notificacao = _mapper.Map<NotificacaoModel>(viewModel);
@@ -56,6 +61,7 @@ namespace EcoClean.Controllers
         }
 
         [HttpPut("{id}")]
+        [Authorize(Roles = "gerente")]
         public ActionResult Put(long id, [FromBody] MoradorViewModel viewModel)
         {
             var notificacaoExistente = _notificacaoService.ObterNotificacaoPorId(id);
@@ -68,6 +74,7 @@ namespace EcoClean.Controllers
         }
 
         [HttpDelete("{id}")]
+        [Authorize(Roles = "gerente")]
         public ActionResult Delete(long id)
         {
             _notificacaoService.DeletarNotificacao(id);

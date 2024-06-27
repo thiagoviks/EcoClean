@@ -3,12 +3,14 @@ using EcoClean.Data.Contexts;
 using EcoClean.Models;
 using EcoClean.Services;
 using EcoClean.ViewModel;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace EcoClean.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
+    [Authorize]
     public class TipoResiduoController : ControllerBase
     {
 
@@ -30,6 +32,7 @@ namespace EcoClean.Controllers
         }
 
         [HttpGet]
+        [Authorize(Roles = "operador,analista,gerente")]
         public ActionResult<IEnumerable<TipoResiduoViewModel>> Get()
         {
             var tipoResiduos = _tipoResiduoService.ListarTipoResiduos();
@@ -38,6 +41,7 @@ namespace EcoClean.Controllers
         }
 
         [HttpGet("{id}")]
+        [Authorize(Roles = "operador,analista,gerente")]
         public ActionResult<TipoResiduoViewModel> Get(long id)
         {
             var tipoResiduo = _tipoResiduoService.ObterTipoResiduoPorId(id);
@@ -49,6 +53,7 @@ namespace EcoClean.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "gerente,analista")]
         public ActionResult Post([FromBody] TipoResiduoViewModel viewModel)
         {
             var tipoResiduo = _mapper.Map<TipoResiduoModel>(viewModel);
@@ -57,6 +62,7 @@ namespace EcoClean.Controllers
         }
 
         [HttpPut("{id}")]
+        [Authorize(Roles = "gerente")]
         public ActionResult Put(long id, [FromBody] RotaViewModel viewModel)
         {
             var tipoResiduoExistente = _tipoResiduoService.ObterTipoResiduoPorId(id);
@@ -69,6 +75,7 @@ namespace EcoClean.Controllers
         }
 
         [HttpDelete("{id}")]
+        [Authorize(Roles = "gerente")]
         public ActionResult Delete(long id)
         {
             _tipoResiduoService.DeletarTipoResiduo(id);

@@ -5,11 +5,13 @@ using System.Diagnostics;
 using AutoMapper;
 using EcoClean.Services;
 using EcoClean.ViewModel;
+using Microsoft.AspNetCore.Authorization;
 
 namespace EcoClean.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
+    [Authorize]
     public class RotaController : ControllerBase
     {
         private readonly ILogger<RotaController> _logger;
@@ -30,6 +32,7 @@ namespace EcoClean.Controllers
         }
 
         [HttpGet]
+        [Authorize(Roles = "operador,analista,gerente")]
         public ActionResult<IEnumerable<RotaViewModel>> Get()
         {
             var rotas = _rotaService.ListarRotas();
@@ -38,6 +41,7 @@ namespace EcoClean.Controllers
         }
 
         [HttpGet("{id}")]
+        [Authorize(Roles = "operador,analista,gerente")]
         public ActionResult<RotaViewModel> Get(long id)
         {
             var rota = _rotaService.ObterRotaPorId(id);
@@ -49,6 +53,7 @@ namespace EcoClean.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "gerente,analista")]
         public ActionResult Post([FromBody] RotaViewModel viewModel)
         {
             var rota = _mapper.Map<RotaModel>(viewModel);
@@ -57,6 +62,7 @@ namespace EcoClean.Controllers
         }
 
         [HttpPut("{id}")]
+        [Authorize(Roles = "gerente")]
         public ActionResult Put(long id, [FromBody] RotaViewModel viewModel)
         {
             var rotaExistente = _rotaService.ObterRotaPorId(id);
@@ -69,6 +75,7 @@ namespace EcoClean.Controllers
         }
 
         [HttpDelete("{id}")]
+        [Authorize(Roles = "gerente")]
         public ActionResult Delete(long id)
         {
             _rotaService.DeletarRota(id);

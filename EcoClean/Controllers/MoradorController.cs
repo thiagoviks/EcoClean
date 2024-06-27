@@ -3,12 +3,14 @@ using EcoClean.Data.Contexts;
 using EcoClean.Models;
 using EcoClean.Services;
 using EcoClean.ViewModel;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace EcoClean.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class MoradorController : ControllerBase
     {
         private readonly ILogger<MoradorController> _logger;
@@ -29,6 +31,7 @@ namespace EcoClean.Controllers
         }
 
         [HttpGet]
+        [Authorize(Roles = "operador,analista,gerente")]
         public ActionResult<IEnumerable<MoradorViewModel>> Get()
         {
             var moradores = _moradorService.ListarMoradores();
@@ -37,6 +40,7 @@ namespace EcoClean.Controllers
         }
 
         [HttpGet("{id}")]
+        [Authorize(Roles = "operador,analista,gerente")]
         public ActionResult<MoradorViewModel> Get(long id)
         {
             var morador = _moradorService.ObterMoradorPorId(id);
@@ -48,6 +52,7 @@ namespace EcoClean.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "gerente,analista")]
         public ActionResult Post([FromBody] MoradorViewModel viewModel)
         {
             var morador = _mapper.Map<MoradorModel>(viewModel);
@@ -56,6 +61,7 @@ namespace EcoClean.Controllers
         }
 
         [HttpPut("{id}")]
+        [Authorize(Roles = "gerente")]
         public ActionResult Put(long id, [FromBody] MoradorViewModel viewModel)
         {
             var moradorExistente = _moradorService.ObterMoradorPorId(id);
@@ -68,6 +74,7 @@ namespace EcoClean.Controllers
         }
 
         [HttpDelete("{id}")]
+        [Authorize(Roles = "gerente")]
         public ActionResult Delete(long id)
         {
             _moradorService.DeletarMorador(id);
