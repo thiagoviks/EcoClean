@@ -10,6 +10,6 @@ namespace EcoClean.Services
         MoradorModel ObterMoradorPorEmail(string email);
         void CriarMorador(MoradorModel morador);
         void AtualizarMorador(MoradorModel morador);
-        void DeletarEndereco(MoradorModel morador);
+        void DeletarMorador(long id);
     }
 }

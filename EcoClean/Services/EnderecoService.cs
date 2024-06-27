@@ -15,7 +15,13 @@ namespace EcoClean.Services
 
         public void CriarEndereco(EnderecoModel endereco) =>_enderecoRepository.Add(endereco);
 
-        public void DeletarEndereco(EnderecoModel endereco) => _enderecoRepository.Delete(endereco);
+        public void DeletarEndereco(long id) {
+            var endereco = _enderecoRepository.GetById(id);
+            if (endereco != null)
+            {
+                _enderecoRepository.Delete(endereco);
+            }
+        }
  
 
         public IEnumerable<EnderecoModel> ListarEnderecos() => _enderecoRepository.GetAll();

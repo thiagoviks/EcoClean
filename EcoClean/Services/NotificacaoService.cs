@@ -17,9 +17,16 @@ namespace EcoClean.Services
 
         public void AtualizarNotificacao(NotificacaoModel notificacao) => _notificacaoRepository.Update(notificacao); 
 
-        public void DeletarNotificacao(NotificacaoModel notificacao) => _notificacaoRepository.Delete(notificacao);
+        public void DeletarNotificacao(long id)
+        {
+            var notificacao = _notificacaoRepository.GetById(id);
+            if (notificacao != null)
+            {
+                _notificacaoRepository.Delete(notificacao);
+            }
+        }
 
-        public NotificacaoModel ObterMoradorPorId(long id) => _notificacaoRepository.GetById(id);
+        public NotificacaoModel ObterNotificacaoPorId(long id) => _notificacaoRepository.GetById(id);
 
         public NotificacaoModel ObterNotificacaoPorData(DateTime data) => _notificacaoRepository.FindByDate(data);
 

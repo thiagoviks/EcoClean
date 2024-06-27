@@ -16,7 +16,14 @@ namespace EcoClean.Services
 
         public void CriarMorador(MoradorModel morador) => _moradorRepository.Add(morador);
 
-        public void DeletarEndereco(MoradorModel morador) => _moradorRepository.Delete(morador);
+        public void DeletarMorador(long id) 
+        {
+            var morador = _moradorRepository.GetById(id);
+            if (morador != null)
+            {
+                _moradorRepository.Delete(morador);
+            }
+        }
 
         public IEnumerable<MoradorModel> ListarMoradores() => _moradorRepository.GetAll();
 

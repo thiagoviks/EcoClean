@@ -9,6 +9,6 @@ namespace EcoClean.Services
         EnderecoModel ObterEnderecoPorCep(string cep);
         void CriarEndereco(EnderecoModel endereco);
         void AtualizarEndereco(EnderecoModel endereco);
-        void DeletarEndereco(EnderecoModel endereco);
+        void DeletarEndereco(long id);
     }
 }
