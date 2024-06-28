@@ -1,0 +1,69 @@
+{
+  "CaminhaoModel": {
+    "Id": 1,
+    "Placa": "ABC-1234",
+    "CoordenadaX": "123.456",
+    "CoordenadaY": "789.012",
+    "CreatedAt": "2023-06-27T10:00:00",
+    "UpdatedAt": "2023-06-27T11:30:00"
+  },
+  "ColetaModel": {
+    "Id": 1,
+    "RotaId": 1,
+    "CaminhaoId": 1,
+    "EnderecoId": 1,
+    "PrevisaoHorario": "2023-06-27T14:00:00",
+    "CreatedAt": "2023-06-27T09:00:00",
+    "UpdatedAt": "2023-06-27T09:30:00",
+    "ColetaTipoResiduo": [
+      {
+        "ColetaId": 1,
+        "TipoResiduoId": 1
+      },
+      {
+        "ColetaId": 1,
+        "TipoResiduoId": 2
+      }
+    ]
+  },
+  "EnderecoModel": {
+    "Id": 1,
+    "Cep": "12345-678",
+    "Rua": "Rua Principal",
+    "Bairro": "Centro",
+    "Numero": 100,
+    "Complemento": "Apartamento 101",
+    "Cidade": "Cidade Exemplo",
+    "Estado": "EX",
+    "CreatedAt": "2023-06-27T08:00:00",
+    "UpdatedAt": "2023-06-27T08:30:00"
+  },
+  "MoradorModel": {
+    "Id": 1,
+    "Nome": "Fulano de Tal",
+    "Email": "fulano@example.com",
+    "EnderecoId": 1,
+    "CreatedAt": "2023-06-27T07:00:00",
+    "UpdatedAt": "2023-06-27T07:30:00"
+  },
+  "NotificacaoModel": {
+    "Id": 1,
+    "Destinatario": "fulano@example.com",
+    "Assunto": "Assunto da Notificação",
+    "Mensagem": "Conteúdo da Notificação",
+    "DataEnvio": "2023-06-27T06:00:00"
+  },
+  "RotaModel": {
+    "Id": 1,
+    "Nome": "Rota A",
+    "CreatedAt": "2023-06-27T12:00:00",
+    "UpdatedAt": "2023-06-27T12:30:00"
+  },
+  "TipoResiduoModel": {
+    "Id": 1,
+    "Nome": "Plástico",
+    "Descricao": "Resíduo de plástico",
+    "CreatedAt": "2023-06-27T13:00:00",
+    "UpdatedAt": "2023-06-27T13:30:00"
+  }
+}
