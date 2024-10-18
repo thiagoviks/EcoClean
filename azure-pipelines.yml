@@ -20,6 +20,16 @@ variables:
   containerRegistry: 'ecocleandocker'  # Replace with your actual Docker registry service connection
 
 steps:
+- task: NuGetToolInstaller@1
+
+- task: NuGetCommand@2
+  inputs:
+    restoreSolution: '$(solution)'
+- task: NuGetCommand@2
+  inputs:
+    command: 'restore'
+    restoreSolution: '$(solution)'
+    feedsToUse: 'select'
 - task: Docker@2
   inputs:
     command: 'buildAndPush'
