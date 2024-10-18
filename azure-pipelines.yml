@@ -13,6 +13,9 @@ pool:
   vmImage: 'ubuntu-latest'
 
 variables:
+  solution: '**/*.sln'
+  buildPlatform: 'Any CPU'
+  buildConfiguration: 'Release'
   imageName: 'thiagoviks/ecoclean'
   containerRegistry: 'ecocleandocker'  # Replace with your actual Docker registry service connection
 
@@ -28,9 +31,5 @@ steps:
     buildContext: '$(Build.SourcesDirectory)'  # Use the source directory for context
     arguments: '--build-arg BUILD_CONFIGURATION=Release'  # Pass build args if needed
 
-- task: AzureWebAppContainer@1
-  inputs:
-    appName: 'EcoClean'  # Replace with your Azure Web App name
-    containerRegistry: '$(containerRegistry)'
-    imageName: '$(imageName):$(Build.BuildId)'
+
 
