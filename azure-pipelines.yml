@@ -13,23 +13,24 @@ pool:
   vmImage: 'ubuntu-latest'
 
 variables:
-  imageName: 'thiagoviks.ecoclean'
+  imageName: 'thiagoviks/ecoclean'
+  containerRegistry: 'ecocleandocker'  # Replace with your actual Docker registry service connection
 
 steps:
-- script: |
-    echo "Building Docker image..."
-    docker build -t $(imageName):$(Build.BuildId) .
-  displayName: 'Build Docker Image'
-
 - task: Docker@2
   inputs:
-    command: 'push'
-    containerRegistry: 'ecocleandocker' # Define your Docker registry service connection
+    command: 'buildAndPush'
+    containerRegistry: '$(containerRegistry)'  # Reference the service connection
     repository: '$(imageName)'
     tags: |
       $(Build.BuildId)
+    Dockerfile: '**/Dockerfile'  # Path to your Dockerfile
+    buildContext: '$(Build.SourcesDirectory)'  # Use the source directory for context
+    arguments: '--build-arg BUILD_CONFIGURATION=Release'  # Pass build args if needed
 
-- task: PublishBuildArtifacts@1
+- task: AzureWebAppContainer@1
   inputs:
-    PathtoPublish: '$(Build.ArtifactStagingDirectory)'
-    ArtifactName: 'drop'
+    appName: 'EcoClean'  # Replace with your Azure Web App name
+    containerRegistry: '$(containerRegistry)'
+    imageName: '$(imageName):$(Build.BuildId)'
+
