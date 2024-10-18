@@ -4,3 +4,32 @@
 # https://aka.ms/yaml
 
 
+trigger:
+  branches:
+    include:
+      - main
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+variables:
+  imageName: 'thiagoviks.ecoclean'
+
+steps:
+- script: |
+    echo "Building Docker image..."
+    docker build -t $(imageName):$(Build.BuildId) .
+  displayName: 'Build Docker Image'
+
+- task: Docker@2
+  inputs:
+    command: 'push'
+    containerRegistry: 'seuContainerRegistry' # Define your Docker registry service connection
+    repository: '$(imageName)'
+    tags: |
+      $(Build.BuildId)
+
+- task: PublishBuildArtifacts@1
+  inputs:
+    PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+    ArtifactName: 'drop'
