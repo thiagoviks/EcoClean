@@ -24,7 +24,7 @@ steps:
 - task: Docker@2
   inputs:
     command: 'push'
-    containerRegistry: 'seuContainerRegistry' # Define your Docker registry service connection
+    containerRegistry: 'ecocleandocker' # Define your Docker registry service connection
     repository: '$(imageName)'
     tags: |
       $(Build.BuildId)
