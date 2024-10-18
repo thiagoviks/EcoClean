@@ -1,8 +1,4 @@
 # Starter pipeline
-# Start with a minimal pipeline that you can customize to build and deploy your code.
-# Add steps that build, run tests, deploy, and more:
-# https://aka.ms/yaml
-
 
 trigger:
   branches:
@@ -20,6 +16,12 @@ variables:
   containerRegistry: 'ecocleandocker'  # Replace with your actual Docker registry service connection
 
 steps:
+- task: DotNetCoreCLI@2
+  inputs:
+    azureSubscription: 'Azure for Students(675e4483-0cdd-4971-928f-0d5d406603ac)'
+    command: 'build'
+    projects: '$(solution)'
+    arguments: '--configuration $(buildConfiguration)'
 - task: NuGetToolInstaller@1
 
 - task: NuGetCommand@2
